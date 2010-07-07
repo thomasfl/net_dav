@@ -500,9 +500,10 @@ module Net #:nodoc:
     # Stores the content of a stream to a URL
     #
     # Example:
-    # File.open(file, "r") do |stream|
-    #   dav.put(url.path, stream, File.size(file))
-    # end
+    #
+    #   File.open(file, "r") do |stream|
+    #     dav.put(url.path, stream, File.size(file))
+    #   end
     def put(path, stream, length)
       path = @uri.merge(path).path
       res = @handler.request_sending_stream(:put, path, stream, length, nil)
@@ -512,6 +513,7 @@ module Net #:nodoc:
     # Stores the content of a string to a URL
     #
     # Example:
+    #
     #   dav.put(url.path, "hello world")
     #
     def put_string(path, str)
@@ -588,7 +590,7 @@ module Net #:nodoc:
       rescue
         return false
       end
-      return (res.is_a? Net::HTTPSuccess)
+      return res.is_a?(Net::HTTPSuccess)
     end
 
     # Makes a new directory (collection)
